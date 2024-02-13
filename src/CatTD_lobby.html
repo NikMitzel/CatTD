@@ -33,6 +33,13 @@
         <div>
             <a href="ref/imprint.html" id="footer_text">Imprint</a>
             <a href="ref/privacypolice.html" id="footer_text">Privacy Policy</a>
+            <button onclick="logout()">logout</button>
+            <script>
+                function logout(){
+                    deleteCookie("name");
+                    window.open("../CatTD.html", "_self");
+                }
+            </script>
         </div>
         <div id="footer_text">© 2023</div>
     </footer>

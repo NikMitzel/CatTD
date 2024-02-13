@@ -21,16 +21,18 @@
                 <div class="formdiv">
                     <div class="formtitle">Account Login</div>
                     <form onsubmit="return false">
-                            <div id="coming-soon-overlay-text">COMMING SOON</div>
-                            <div>
-                                <input class="input_deact" id="email" type="text" name="E-Mail" placeholder="E-Mail" disabled />
-                            </div>
-                            <div>
-                                <input class="input_deact" id="password" type="password" name="Passwort" placeholder="Passwort" disabled />
-                            </div>
-                            <div>
-                                <button class="submit_button" id="submitLogin">Login</button>
-                            </div>
+                        <div id="coming-soon-overlay-text">COMMING SOON</div>
+                        <div>
+                            <input class="input_deact" id="email" type="text" name="E-Mail" placeholder="E-Mail"
+                                disabled />
+                        </div>
+                        <div>
+                            <input class="input_deact" id="password" type="password" name="Passwort"
+                                placeholder="Passwort" disabled />
+                        </div>
+                        <div>
+                            <button class="submit_button" id="submitLogin">Login</button>
+                        </div>
                         <div class="error_messages"></div>
                     </form>
 
@@ -81,7 +83,7 @@
                     <div class="formtitle">Join as Guest</div>
 
                     <form onsubmit="return false">
-                        
+
                         <div>
                             <input id="name" type="text" name="name" placeholder="Username" />
                         </div>
@@ -93,17 +95,20 @@
                         <div class="error_messages" id="error_message_guest"></div>
                     </form>
                     <!-- play as guest function-->
-                    <script> 
+                    <script>
+                        if (getCookie('name') != null) {
+                            window.open("src/CatTD_lobby.html", "_self");
+                        }
                         function playAsGuest() {
                             error_message_guest.innerHTML = ""
-                            if (!checkCookieAcceptance()){
+                            if (!checkCookieAcceptance()) {
                                 error_message_guest.innerHTML = "Accept cookies first"
                                 return;
                             }
                             var name = document.getElementById("name").value;
                             if (name == "") {
                                 error_message_guest.innerHTML = "Add a Username"
-                            } else{
+                            } else {
                                 error_message_guest.innerHTML = ""
                                 setCookie("name", name);
                                 window.open("src/CatTD_lobby.html", "_self");
@@ -116,12 +121,12 @@
 
                 <!-- Cookie System -->
                 <div id="cookiePopup">
-                    This website uses cookies to ensure the best experience. <a href="src/ref/privacypolice.html">Learn more</a>.
+                    This website uses cookies to ensure the best experience. <a href="src/ref/privacypolice.html">Learn
+                        more</a>.
                     <button onclick="acceptCookies()">Accept</button>
                 </div>
 
                 <script>
-                    localStorage. clear(); 
                     // Überprüfen, ob bereits akzeptiert wurde
                     function checkCookieAcceptance() {
                         var accepted = localStorage.getItem('cookiesAccepted');
