@@ -28,6 +28,8 @@ body {
 }
 
 html{
+    margin: 0;
+    padding: 0;
     height: 100%;
 }
 
@@ -52,7 +54,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 footer {
