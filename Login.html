@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet" />
+    <title>CatTD - Login</title>
+    <link rel="stylesheet" href="LoginStyles.css" />
+    <script type="application/javascript" src="cookies.js"></script>
+</head>
+
+<body>
+    <div id="outercontainer">
+        <div id="content">
+            <header>
+                <a href="Login.html"><img id="h_logo" src="icon.png" /></a>
+            </header>
+
+            <div id="outerdiv">
+                <div id="logindiv">
+                    <div class="title">CatTD</div>
+                    <form onsubmit="return false">
+                        <div class="coming-soon-overlay">
+                            <div class="coming-soon-overlay-text">COMMING SOON</div>
+                            <div>
+                                <input id="email" type="text" name="E-Mail" placeholder="E-Mail" disabled />
+                            </div>
+                            <div>
+                                <input id="password" type="password" name="Passwort" placeholder="Passwort" disabled />
+                            </div>
+                            <div>
+                                <button class="d_submit" id="disabled" disabled>Login</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <input id="name" type="text" name="name" placeholder="Name" />
+                        </div>
+                        <div>
+                            <button class="d_submit" id="submitPlayAsGuest">
+                                Play as Guest
+                            </button>
+                        </div>
+                        <div id="error_message"></div>
+                    </form>
+
+                    <script>
+                        /* For login(comming soon)
+                    let https = "http://localhost:8080/api/";
+                    function send(method, apiSection, data, callback) {
+                        let xhr = new XMLHttpRequest();
+                        xhr.open(method, https + apiSection, true);
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState === 4) {
+                                if (xhr.status === 200) {
+                                    callback(xhr.responseText)
+                                } else {
+                                    callback(xhr.status)
+                                }
+                            }
+                        }
+                        xhr.setRequestHeader("Content-Type", "application/json");
+                        xhr.send(data);
+                    }
+                    
+                    document.getElementById('submitLogin').onclick = function () {
+                        login();
+                    };
+
+                    function login() {
+                        let error_message = document.getElementById("error_message")
+                        var email = document.getElementById('email').value;
+                        var password = document.getElementById('password').value;
+                        let data = {
+                            "email": email,
+                            "password": password
+                        }
+                        send("POST", "user/checkLogin", JSON.stringify(data), function (response) {
+                            console.log(response)
+                            if (response === "true") {
+                                setCookie("email", email)
+                                window.open("BookTickets.html", "_self")
+                            }else if (response === "false"){   
+                                error_message.innerHTML = "Email or Password incorrect"
+                            }
+                        })
+                    }
+                    */
+
+                        document.getElementById("submitPlayAsGuest").onclick =
+                            function () {
+                                playAsGuest();
+                            };
+
+                        function playAsGuest() {
+                            var name = document.getElementById("name").value;
+                            if (!name == "") {
+                                setCookie("name", name);
+                                window.open("Home.html", "_self");
+                            }
+                        }
+                    </script>
+                </div>
+                <!-- Cookie Accept -->
+                <div id="cookie-banner" style="
+							display: none;
+							position: fixed;
+							bottom: 0;
+							left: 0;
+							width: 100%;
+							background: #f9ed69;
+							padding: 20px;
+							text-align: center;
+							z-index: 999;
+						">
+                    <p>
+                        Unsere Webseite verwendet Cookies, um Ihnen ein besseres Erlebnis
+                        zu bieten. Durch die weitere Nutzung stimmen Sie der Verwendung
+                        von Cookies zu.
+                    </p>
+                    <a href="/datenschutz" target="_blank">Weitere Informationen</a>
+                    <button id="accept-cookies">Akzeptieren</button>
+                    <script>
+                        document.getElementById("cookie-banner").style.display = "block";
+                        document
+                            .getElementById("accept-cookies")
+                            .addEventListener("click", function () {
+                                document.getElementById("cookie-banner").style.display =
+                                    "none";
+                                localStorage.setItem("cookieAccepted", true);
+                            });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div>
+            <a href="ref\imprint.html" class="f_text">Imprint</a>
+            <a href="ref\privacypolice.html" class="f_text">Privacy Policy</a>
+        </div>
+        <div class="f_text">© 2023</div>
+    </footer>
+</body>
+
+</html>
