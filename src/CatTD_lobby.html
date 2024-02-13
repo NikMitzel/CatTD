@@ -9,6 +9,7 @@
     <title>CatTD - Login</title>
     <link rel="stylesheet" href="css/Styles.css" />
     <script type="application/javascript" src="js/cookies.js"></script>
+    <script src="https://kit.fontawesome.com/5441d3e7e3.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -33,15 +34,19 @@
         <div>
             <a href="ref/imprint.html" id="footer_text">Imprint</a>
             <a href="ref/privacypolice.html" id="footer_text">Privacy Policy</a>
-            <button onclick="logout()">logout</button>
+        </div>
+        <div id="footer_text">
+            <button id="logoutButton" onclick="logout()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
             <script>
                 function logout(){
                     deleteCookie("name");
                     window.open("../CatTD.html", "_self");
                 }
             </script>
+            © 2023
         </div>
-        <div id="footer_text">© 2023</div>
     </footer>
 </body>
 
