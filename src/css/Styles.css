@@ -211,6 +211,9 @@ input:focus {
     margin-right: 10px;
 }
 
+#canvas{
+    margin-bottom: 10px;
+}
 
 /*responsive CSS for mobile Phone*/
 @media screen and (max-width: 600px) {
