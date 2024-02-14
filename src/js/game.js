@@ -63,8 +63,30 @@ function animate() {
     })
 
     cats.forEach(cat => {
-        cat.draw()
+        cat.update()
+        cat.target = null
+        const enemysInRadius = enemys.filter((enemy) => {
+            const xDistance = enemy.center.x - cat.center.x
+            const yDistance = enemy.center.y - cat.center.y
+            const distance = Math.hypot(xDistance, yDistance)
+            return distance < enemy.radius + cat.shootRadius
+        })
+        cat.target = enemysInRadius[0]
+
+        for (let i = cat.projectiles.length -1; i >= 0; i--){
+            const projectile = cat.projectiles[i]
+            projectile.update()
+
+            const xDistance = projectile.enemy.center.x - projectile.position.x
+            const yDistance = projectile.enemy.center.y - projectile.position.y
+            const distance = Math.hypot(xDistance, yDistance)
+            if (distance < projectile.enemy.radius + projectile.radius){
+                cat.projectiles.splice(i, 1)
+            }
+        }
     })
+
+
 }
 
 const mouse = {
@@ -72,7 +94,7 @@ const mouse = {
     y: undefined
 }
 
-canvas.addEventListener('click', (event) => {
+addEventListener('click', (event) => {
     if (activeTile && !activeTile.isOccupied) {
         cats.push(new Cat({
             position: {
@@ -83,7 +105,6 @@ canvas.addEventListener('click', (event) => {
         ))
         activeTile.isOccupied = true
     }
-    console.log(cats)
 })
 
 addEventListener('mousemove', (event) => {
