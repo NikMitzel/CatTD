@@ -40,8 +40,8 @@ image.onload = () => {
 const enemys = []
 
 
-function spawnEnemies(spawnCount){
-    for (let i = 1; i < spawnCount +1; i++) {
+function spawnEnemies(spawnCount) {
+    for (let i = 1; i < spawnCount + 1; i++) {
         const xOffset = i * 150
         enemys.push(new Enemy({
             position: { x: waypoints[0].x - xOffset, y: waypoints[0].y }
@@ -55,17 +55,36 @@ function spawnEnemies(spawnCount){
 const cats = []
 let activeTile = undefined
 let enemyCount = 2
+let hearts = 10
 
 spawnEnemies(enemyCount)
 
 
 function animate() {
-    requestAnimationFrame(animate)
+    const animationId = requestAnimationFrame(animate)
 
     c.drawImage(image, 0, 0)
     for (let i = enemys.length - 1; i >= 0; i--) {
         const enemy = enemys[i]
         enemy.update()
+        if (enemy.position.x > canvas.width) {
+            enemys.splice(i, 1)
+            hearts --
+
+            //game over
+            if (hearts === 0) {
+                console.log('asdadsasdas')
+                cancelAnimationFrame(animationId)
+                document.querySelector('#gameover').style.display = 'flex';
+            }
+        }
+    }
+
+
+    //tracking total amount of enemies
+    if (enemys.length === 0) {
+        enemyCount++
+        spawnEnemies(enemyCount)
     }
 
     placementTiles.forEach(tile => {
@@ -96,17 +115,11 @@ function animate() {
                 //enemy health and removal
                 projectile.enemy.health -= 20
                 if (projectile.enemy.health <= 0) {
-                    const enemyIndex = enemys.findIndex((enemy) =>{
+                    const enemyIndex = enemys.findIndex((enemy) => {
                         return projectile.enemy === enemy
                     })
 
-                    if(enemyIndex > -1) enemys.splice(enemyIndex, 1)
-                }
-
-                //tracking total amount of enemies
-                if (enemys.length === 0){
-                    enemyCount ++
-                    spawnEnemies(enemyCount)
+                    if (enemyIndex > -1) enemys.splice(enemyIndex, 1)
                 }
                 cat.projectiles.splice(i, 1)
             }
