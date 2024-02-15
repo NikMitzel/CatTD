@@ -129,17 +129,20 @@ class Cat {
         this.shootingSpeed = 100
         this.target 
         this.frames = 0
-        //this.cost = 20
+        this.cost = 50
     }
 
     draw() {
         c.fillStyle = 'blue'
         c.fillRect(this.position.x,this.position.y, this.size, this.size)
 
-        c.beginPath
-        c.arc(this.center.x, this.center.y, this.shootRadius, 0, Math.PI * 2)
-        c.fillStyle = 'rgba(0, 0, 255, .2)'
-        c.fill()
+
+        c.beginPath()
+        c.arc(this.center.x, this.center.y, this.shootRadius, 0, 2 * Math.PI, false)
+        c.lineWidth = 5;
+        c.strokeStyle = 'rgba(192,192,255, .5)';
+        c.stroke()
+ 
     }
 
     update(){

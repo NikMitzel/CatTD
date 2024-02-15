@@ -37,13 +37,13 @@ image.onload = () => {
     animate()
 }
 
-const enemys = []
+const enemies = []
 
 
 function spawnEnemies(spawnCount) {
     for (let i = 1; i < spawnCount + 1; i++) {
         const xOffset = i * 150
-        enemys.push(new Enemy({
+        enemies.push(new Enemy({
             position: { x: waypoints[0].x - xOffset, y: waypoints[0].y }
         })
         )
@@ -65,11 +65,11 @@ function animate() {
     const animationId = requestAnimationFrame(animate)
 
     c.drawImage(image, 0, 0)
-    for (let i = enemys.length - 1; i >= 0; i--) {
-        const enemy = enemys[i]
+    for (let i = enemies.length - 1; i >= 0; i--) {
+        const enemy = enemies[i]
         enemy.update()
         if (enemy.position.x > canvas.width) {
-            enemys.splice(i, 1)
+            enemies.splice(i, 1)
             hearts --
             document.querySelector('#hearts').innerHTML = hearts
 
@@ -84,7 +84,7 @@ function animate() {
 
 
     //tracking total amount of enemies
-    if (enemys.length === 0) {
+    if (enemies.length === 0) {
         enemyCount++
         spawnEnemies(enemyCount)
     }
@@ -96,13 +96,13 @@ function animate() {
     cats.forEach(cat => {
         cat.update()
         cat.target = null
-        const enemysInRadius = enemys.filter((enemy) => {
+        const enemiesInRadius = enemies.filter((enemy) => {
             const xDistance = enemy.center.x - cat.center.x
             const yDistance = enemy.center.y - cat.center.y
             const distance = Math.hypot(xDistance, yDistance)
             return distance < enemy.radius + cat.shootRadius
         })
-        cat.target = enemysInRadius[0]
+        cat.target = enemiesInRadius[0]
 
         for (let i = cat.projectiles.length - 1; i >= 0; i--) {
             const projectile = cat.projectiles[i]
@@ -117,14 +117,14 @@ function animate() {
                 //enemy health and removal
                 projectile.enemy.health -= 20
                 if (projectile.enemy.health <= 0) {
-                    const enemyIndex = enemys.findIndex((enemy) => {
+                    const enemyIndex = enemies.findIndex((enemy) => {
                         return projectile.enemy === enemy
                     })
 
                     if (enemyIndex > -1){
-                        coins += enemys[enemyIndex].worth
+                        coins += enemies[enemyIndex].worth
                         document.querySelector('#coins').innerHTML = coins
-                        enemys.splice(enemyIndex, 1)
+                        enemies.splice(enemyIndex, 1)
                     } 
                 }
                 cat.projectiles.splice(i, 1)
@@ -141,7 +141,7 @@ const mouse = {
 }
 
 addEventListener('click', (event) => {
-    if (activeTile && !activeTile.isOccupied && coins - 50 >= 0) {
+    if (activeTile && !activeTile.isOccupied && coins - 50 >= 0) {  //fix for different cats
         cats.push(new Cat({
             position: {
                 x: activeTile.position.x,
@@ -149,7 +149,7 @@ addEventListener('click', (event) => {
             }
         }
         ))
-        coins -= 50
+        coins -= cats[cats.length -1].cost
         document.querySelector('#coins').innerHTML = coins
         activeTile.isOccupied = true
     }
