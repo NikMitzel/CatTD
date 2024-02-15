@@ -38,25 +38,35 @@ image.onload = () => {
 }
 
 const enemys = []
-for (let i = 1; i < 10; i++) {
-    const xOffset = i * 150
-    enemys.push(new Enemy({
-        position: { x: waypoints[0].x - xOffset, y: waypoints[0].y }
-    })
-    )
+
+
+function spawnEnemies(spawnCount){
+    for (let i = 1; i < spawnCount +1; i++) {
+        const xOffset = i * 150
+        enemys.push(new Enemy({
+            position: { x: waypoints[0].x - xOffset, y: waypoints[0].y }
+        })
+        )
+    }
 }
+
+
 
 const cats = []
 let activeTile = undefined
+let enemyCount = 2
+
+spawnEnemies(enemyCount)
 
 
 function animate() {
     requestAnimationFrame(animate)
 
     c.drawImage(image, 0, 0)
-    enemys.forEach(enemy => {
+    for (let i = enemys.length - 1; i >= 0; i--) {
+        const enemy = enemys[i]
         enemy.update()
-    })
+    }
 
     placementTiles.forEach(tile => {
         tile.update(mouse)
@@ -73,14 +83,31 @@ function animate() {
         })
         cat.target = enemysInRadius[0]
 
-        for (let i = cat.projectiles.length -1; i >= 0; i--){
+        for (let i = cat.projectiles.length - 1; i >= 0; i--) {
             const projectile = cat.projectiles[i]
             projectile.update()
 
             const xDistance = projectile.enemy.center.x - projectile.position.x
             const yDistance = projectile.enemy.center.y - projectile.position.y
             const distance = Math.hypot(xDistance, yDistance)
-            if (distance < projectile.enemy.radius + projectile.radius){
+
+            //when a projektile hits an enemy
+            if (distance < projectile.enemy.radius + projectile.radius) {
+                //enemy health and removal
+                projectile.enemy.health -= 20
+                if (projectile.enemy.health <= 0) {
+                    const enemyIndex = enemys.findIndex((enemy) =>{
+                        return projectile.enemy === enemy
+                    })
+
+                    if(enemyIndex > -1) enemys.splice(enemyIndex, 1)
+                }
+
+                //tracking total amount of enemies
+                if (enemys.length === 0){
+                    enemyCount ++
+                    spawnEnemies(enemyCount)
+                }
                 cat.projectiles.splice(i, 1)
             }
         }
