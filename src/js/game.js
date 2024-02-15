@@ -56,6 +56,7 @@ const cats = []
 let activeTile = undefined
 let enemyCount = 2
 let hearts = 10
+let coins = 100
 
 spawnEnemies(enemyCount)
 
@@ -70,6 +71,7 @@ function animate() {
         if (enemy.position.x > canvas.width) {
             enemys.splice(i, 1)
             hearts --
+            document.querySelector('#hearts').innerHTML = hearts
 
             //game over
             if (hearts === 0) {
@@ -119,7 +121,11 @@ function animate() {
                         return projectile.enemy === enemy
                     })
 
-                    if (enemyIndex > -1) enemys.splice(enemyIndex, 1)
+                    if (enemyIndex > -1){
+                        coins += enemys[enemyIndex].worth
+                        document.querySelector('#coins').innerHTML = coins
+                        enemys.splice(enemyIndex, 1)
+                    } 
                 }
                 cat.projectiles.splice(i, 1)
             }
@@ -135,7 +141,7 @@ const mouse = {
 }
 
 addEventListener('click', (event) => {
-    if (activeTile && !activeTile.isOccupied) {
+    if (activeTile && !activeTile.isOccupied && coins - 50 >= 0) {
         cats.push(new Cat({
             position: {
                 x: activeTile.position.x,
@@ -143,6 +149,8 @@ addEventListener('click', (event) => {
             }
         }
         ))
+        coins -= 50
+        document.querySelector('#coins').innerHTML = coins
         activeTile.isOccupied = true
     }
 })

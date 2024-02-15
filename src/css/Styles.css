@@ -229,6 +229,39 @@ input:focus {
     color: white;
 }
 
+#hearts{
+    position: absolute;
+    top: 12px;
+    right: 65px;
+    font-size: 250%;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+}
+#heartsIcon{
+    position: absolute;
+    font-size: 250%;
+    top: 16px;
+    right: 20px;
+    color: #ff3c3c;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+}
+
+#coins{
+    position: absolute;
+    top: 12px;
+    right: 181px;
+    font-size: 250%;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+}
+#coinsIcon{
+    position: absolute;
+    font-size: 250%;
+    top: 16px;
+    right: 128px;
+    color: gold;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+}
 /*responsive CSS for mobile Phone*/
 @media screen and (max-width: 600px) {
     body {

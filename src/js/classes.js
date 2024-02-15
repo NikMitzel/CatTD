@@ -36,7 +36,8 @@ class Enemy {
             x: 0,
             y: 0
         }
-        this.speed = 10
+        this.speed = 2
+        this.worth = 25
     }
 
     draw() {
@@ -128,6 +129,7 @@ class Cat {
         this.shootingSpeed = 100
         this.target 
         this.frames = 0
+        //this.cost = 20
     }
 
     draw() {
