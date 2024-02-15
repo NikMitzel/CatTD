@@ -20,30 +20,30 @@
             </header>
             <div id="contentdiv">
                 <div>
-                    <button class="submit_button" onclick="playStart()">
-                        Play
-                    </button>
-                    </button>
+                    <div id="lobby_header">Choose a Map</div>
+                    <div id="mapChoose">
+                        <button class="submit_button" onclick="pervMap()"><</button>
+                        <img src="assets\map1.png" alt="" width="800px">
+                        <button class="submit_button" onclick="nextMap()">></button>
+                    </div>
+                    <div>
+                        <button class="submit_button" onclick="playStart()">
+                            Play
+                        </button>
+                        
+                    </div>
                     <script>
                         function playStart() {
                             window.open("CatTD_game.html", "_self");
                         }
+                        function pervMap(){
+
+                        }
+                        function nextMap(){
+                            
+                        }
                     </script>
                 </div>
-
-
-
-
-                <button class="submit_button" onclick="playStart()">
-                    Play
-                </button>
-                </button>
-                <script>
-                    function playStart() {
-                        window.open("CatTD_game.html", "_self");
-                    }
-                </script>
-
 
             </div>
         </div>
