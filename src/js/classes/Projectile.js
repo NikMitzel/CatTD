@@ -8,13 +8,17 @@ class Projectile {
         this.enemy = enemy
         this.radius = 10
         this.speed = 5
+
+        this.image = new Image()
+        this.image.src = 'img/CatFireball.png'
     }
 
     draw(){
-        c.beginPath()
-        c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2)
-        c.fillStyle = 'orange'
-        c.fill()
+        c.drawImage(this.image, this.position.x, this.position.y)
+        // c.beginPath()
+        // c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2)
+        // c.fillStyle = 'orange'
+        // c.fill()
     }
 
     update(){
