@@ -1,7 +1,10 @@
-
-
-class Enemy {
-    constructor( {position = {x: 0, y: 0}} ) {
+class Enemy extends Sprite {
+    constructor({position = {x: 0, y: 0}}) {
+        super({
+            position, imageSrc: 'img/icon.png', frames: {
+                max: 7
+            }
+        });
         this.position = position
         this.width = 100
         this.height = 100
@@ -21,11 +24,8 @@ class Enemy {
     }
 
     draw() {
-        c.fillStyle = 'red'
-        //c.fillRect(this.position.x, this.position.y, this.width, this.height)
-        c.beginPath()
-        c.arc(this.center.x, this.center.y, this.radius, 0, Math.PI * 2)
-        c.fill()
+        super.draw()
+
 
         //health bar
         c.fillStyle = 'red'
@@ -55,8 +55,8 @@ class Enemy {
 
 
         if (
-            Math.abs(Math.round(this.center.x) - Math.round(waypoint.x)) < Math.abs(this.velocity.x)&&
-            Math.abs(Math.round(this.center.y) - Math.round(waypoint.y)) < Math.abs(this.velocity.y)&&
+            Math.abs(Math.round(this.center.x) - Math.round(waypoint.x)) < Math.abs(this.velocity.x) &&
+            Math.abs(Math.round(this.center.y) - Math.round(waypoint.y)) < Math.abs(this.velocity.y) &&
             this.waypointIndex < waypoints.length - 1
         ) {
             this.waypointIndex++
