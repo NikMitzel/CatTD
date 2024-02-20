@@ -52,9 +52,11 @@ function spawnEnemies(spawnCount) {
 
 
 
+
 const cats = []
 let activeTile = undefined
 let enemyCount = 2
+let kills = 0
 let hearts = 10
 let coins = 100
 
@@ -75,9 +77,10 @@ function animate() {
 
             //game over
             if (hearts === 0) {
-                console.log('asdadsasdas')
                 cancelAnimationFrame(animationId)
                 document.querySelector('#gameover').style.display = 'flex';
+                let points = coins + (kills * 100) 
+                addPlayerToLeaderboard(getCookie("username"), points);
             }
         }
     }
@@ -85,6 +88,7 @@ function animate() {
 
     //tracking total amount of enemies
     if (enemies.length === 0) {
+        kills = kills + enemyCount;
         enemyCount++
         spawnEnemies(enemyCount)
     }
@@ -170,3 +174,8 @@ addEventListener('mousemove', (event) => {
         }
     }
 })
+
+function leavPage() {
+    let points = coins + (kills * 100) 
+    addPlayerToLeaderboard(getCookie("username"), points);
+}

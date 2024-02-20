@@ -63,38 +63,20 @@
                     <h1>Leaderboard</h1>
                     <ol id="leaderboard"></ol>
 
+                    <script src="js/Leaderboard.js"></script>
                     <script>
-                        function loadLeaderboard() {
-                            const leaderboardData = JSON.parse(localStorage.getItem('leaderboard')) || [];
+                        
+                        const leaderboardData = JSON.parse(localStorage.getItem('leaderboard')) || [];
 
-                            leaderboardData.sort((a, b) => b.score - a.score);
+                        leaderboardData.sort((a, b) => b.score - a.score);
 
-                            const leaderboardElement = document.getElementById('leaderboard');
-                            leaderboardElement.innerHTML = '';
-                            leaderboardData.forEach(player => {
-                                const listItem = document.createElement('li');
-                                listItem.textContent = `${player.name}: ${player.score} points`;
-                                leaderboardElement.appendChild(listItem);
-                            });
-                        }
-
-                        function addPlayerToLeaderboard(name, score) {
-                            const leaderboardData = JSON.parse(localStorage.getItem('leaderboard')) || [];
-                            const existingPlayerIndex = leaderboardData.findIndex(player => player.name === name);
-                            if (existingPlayerIndex !== -1) {
-                                if (score > leaderboardData[existingPlayerIndex].score) {
-                                    leaderboardData[existingPlayerIndex].score = score;
-                                    localStorage.setItem('leaderboard', JSON.stringify(leaderboardData));
-                                }
-                            } else {
-                                leaderboardData.push({ name, score });
-                                localStorage.setItem('leaderboard', JSON.stringify(leaderboardData));
-                            }
-
-                            loadLeaderboard(); 
-                        }
-
-                        window.onload = loadLeaderboard;
+                        const leaderboardElement = document.getElementById('leaderboard');
+                        leaderboardElement.innerHTML = '';
+                        leaderboardData.forEach(user => {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = `${user.name}: ${user.score} points`;
+                            leaderboardElement.appendChild(listItem);
+                        });
                     </script>
 
 
