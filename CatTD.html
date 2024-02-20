@@ -86,7 +86,7 @@
                     <form onsubmit="return false">
 
                         <div>
-                            <input id="name" type="text" name="name" placeholder="Username" />
+                            <input id="username" type="text" name="name" placeholder="Username" />
                         </div>
                         <div>
                             <button class="submit_button" id="submitPlayAsGuest" onclick="playAsGuest()">
@@ -97,7 +97,7 @@
                     </form>
                     <!-- play as guest function-->
                     <script>
-                        if (getCookie('name') != null) {
+                        if (getCookie('username') != null) {
                             window.open("src/CatTD_lobby.html", "_self");
                         }
                         function playAsGuest() {
@@ -105,12 +105,12 @@
                             if (!checkCookieAcceptance()) {
                                 error_message_guest.innerHTML = "Accept cookies first"
                             }
-                            var name = document.getElementById("name").value;
-                            if (!name) {
+                            var username = document.getElementById("username").value;
+                            if (!username) {
                                 error_message_guest.innerHTML = "Add a Username"
                             } else {
-                                setCookie("name", name)
-                                if (getCookie('name') != null) {
+                                setCookie("username", username)
+                                if (getCookie('username') != null) {
                                     window.open("src/CatTD_lobby.html", "_self");
                                 }
                             }
@@ -130,13 +130,13 @@
                 <script>
                     // Überprüfen, ob bereits akzeptiert wurde
                     function checkCookieAcceptance() {
-                        var accepted = localStorage.getItem('cookiesAccepted');
+                        var accepted = getCookie('cookiesAccepted');
                         return accepted === 'true';
                     }
 
                     // Akzeptieren und ausblenden
                     function acceptCookies() {
-                        localStorage.setItem('cookiesAccepted', 'true');
+                        setCookie('cookiesAccepted', 'true');
                         document.getElementById('submitPlayAsGuest').disabled = false;
                         document.getElementById('cookiePopup').style.display = 'none';
                     }
@@ -152,10 +152,10 @@
     </div>
     <footer>
         <div>
-            <a href="src/ref/imprint.html" id="footer_text">Imprint</a>
-            <a href="src/ref/privacypolice.html" id="footer_text">Privacy Policy</a>
+            <a href="src/ref/imprint.html" class="footer_text">Imprint</a>
+            <a href="src/ref/privacypolice.html" class="footer_text">Privacy Policy</a>
         </div>
-        <div id="footer_text">© 2023</div>
+        <div class="footer_text">© 2023</div>
     </footer>
 </body>
 

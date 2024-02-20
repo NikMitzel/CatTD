@@ -22,27 +22,82 @@
                 <div>
                     <div id="lobby_header">Choose a Map</div>
                     <div id="mapChoose">
-                        <button class="submit_button" onclick="pervMap()"><</button>
-                        <img src="assets\map1.png" alt="" width="800px">
-                        <button class="submit_button" onclick="nextMap()">></button>
+                        <button class="submit_button" onclick="pervMap()">
+                            < </button>
+                                <img src="assets\map1.png" id="mapImg" alt="" width="800px">
+                                <button class="submit_button" onclick="nextMap()">></button>
                     </div>
                     <div>
                         <button class="submit_button" onclick="playStart()">
                             Play
                         </button>
-                        
+
                     </div>
                     <script>
+                        let mapValu = 1;
+                        let nuberOfMaps = 3;
+                        setCookie("map", mapValu)
                         function playStart() {
                             window.open("CatTD_game.html", "_self");
                         }
-                        function pervMap(){
-
+                        function pervMap() {
+                            if (mapValu > 1) {
+                                mapValu--;
+                            } else {
+                                mapValu = 3;
+                            }
+                            setCookie("map", mapValu)
+                            document.getElementById("mapImg").src = "\assets/map" + mapValu + ".png";
                         }
-                        function nextMap(){
-                            
+                        function nextMap() {
+                            if (mapValu < 3) {
+                                mapValu++;
+                            } else {
+                                mapValu = 1;
+                            }
+                            setCookie("map", mapValu)
+                            document.getElementById("mapImg").src = "\assets/map" + mapValu + ".png";
                         }
                     </script>
+
+                    <h1>Leaderboard</h1>
+                    <ol id="leaderboard"></ol>
+
+                    <script>
+                        function loadLeaderboard() {
+                            const leaderboardData = JSON.parse(localStorage.getItem('leaderboard')) || [];
+
+                            leaderboardData.sort((a, b) => b.score - a.score);
+
+                            const leaderboardElement = document.getElementById('leaderboard');
+                            leaderboardElement.innerHTML = '';
+                            leaderboardData.forEach(player => {
+                                const listItem = document.createElement('li');
+                                listItem.textContent = `${player.name}: ${player.score} points`;
+                                leaderboardElement.appendChild(listItem);
+                            });
+                        }
+
+                        function addPlayerToLeaderboard(name, score) {
+                            const leaderboardData = JSON.parse(localStorage.getItem('leaderboard')) || [];
+                            const existingPlayerIndex = leaderboardData.findIndex(player => player.name === name);
+                            if (existingPlayerIndex !== -1) {
+                                if (score > leaderboardData[existingPlayerIndex].score) {
+                                    leaderboardData[existingPlayerIndex].score = score;
+                                    localStorage.setItem('leaderboard', JSON.stringify(leaderboardData));
+                                }
+                            } else {
+                                leaderboardData.push({ name, score });
+                                localStorage.setItem('leaderboard', JSON.stringify(leaderboardData));
+                            }
+
+                            loadLeaderboard(); 
+                        }
+
+                        window.onload = loadLeaderboard;
+                    </script>
+
+
                 </div>
 
             </div>
@@ -50,16 +105,19 @@
     </div>
     <footer>
         <div>
-            <a href="ref/imprint.html" id="footer_text">Imprint</a>
-            <a href="ref/privacypolice.html" id="footer_text">Privacy Policy</a>
+            <a href="ref/imprint.html" class="footer_text">Imprint</a>
+            <a href="ref/privacypolice.html" class="footer_text">Privacy Policy</a>
         </div>
-        <div id="footer_text">
-            <button id="logoutButton" onclick="logout()">
+        <div>
+            <button id="logoutButton" class="footer_text" onclick="logout()">
+                <a id="usernameDisplay"></a>
                 <i class="fa-solid fa-right-from-bracket"></i>
             </button>
             <script>
+                usernameDisplay.innerHTML = getCookie("username")
                 function logout() {
-                    deleteCookie("name");
+                    getCookie("username")
+                    deleteCookie("username");
                     window.open("../CatTD.html", "_self");
                 }
             </script>
