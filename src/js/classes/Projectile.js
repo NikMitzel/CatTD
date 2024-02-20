@@ -10,7 +10,7 @@ class Projectile {
         this.speed = 5
 
         this.image = new Image()
-        this.image.src = 'img/CatFireball.png'
+        this.image.src = 'img/CatFireballsmol.png'
     }
 
     draw(){
