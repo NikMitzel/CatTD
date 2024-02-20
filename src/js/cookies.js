@@ -1,28 +1,12 @@
-function setCookie(name, value, minutes) {
-    let cookie = name + "=" + (value || "") + ';path=/;';
-
-    if (minutes) {
-        const date = new Date();
-        date.setTime(date.getTime() + (minutes * 60 * 1000));
-        cookie += "expires=" + date.toUTCString() + ";";
-    }
-
-    document.cookie = cookie;
+function setCookie(name, value) {
+    localStorage.setItem(name, value);
 }
 
 function getCookie(name) {
-    const cookies = document.cookie.split(";");
-
-    for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i].trim();
-        if (cookie.split("=")[0] === name) {
-            return cookie.substring(name.length + 1, cookie.length);
-        }
-    }
-    return undefined;
+    var value = localStorage.getItem(name);
+    return value;
 }
 
 function deleteCookie(name) {
-    document.cookie = name + '=;Max-Age=-99999999;path=/;';
-    
+    localStorage.removeItem(name)
 }

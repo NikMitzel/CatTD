@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet" />
     <title>CatTD - Login</title>
     <link rel="stylesheet" href="src/css/Styles.css" />
-    <script type="application/javascript" src="src/js/cookies.js"></script>
+    <script type="application/javascript" src="src\js\cookies.js"></script>
     <script src="https://kit.fontawesome.com/5441d3e7e3.js" crossorigin="anonymous"></script>
 </head>
 
@@ -104,15 +104,15 @@
                             error_message_guest.innerHTML = ""
                             if (!checkCookieAcceptance()) {
                                 error_message_guest.innerHTML = "Accept cookies first"
-                                return;
                             }
                             var name = document.getElementById("name").value;
-                            if (name == "") {
+                            if (!name) {
                                 error_message_guest.innerHTML = "Add a Username"
                             } else {
-                                error_message_guest.innerHTML = ""
-                                setCookie("name", name);
-                                window.open("src/CatTD_lobby.html", "_self");
+                                setCookie("name", name)
+                                if (getCookie('name') != null) {
+                                    window.open("src/CatTD_lobby.html", "_self");
+                                }
                             }
                         }
                     </script>
