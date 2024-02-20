@@ -2,61 +2,64 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="img/icon.png" type="image/x-icon" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" href="img/icon.png" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet"/>
     <title>CatTD - Login</title>
-    <link rel="stylesheet" href="css/Styles.css" />
+    <link rel="stylesheet" href="css/Styles.css"/>
     <script type="application/javascript" src="js/cookies.js"></script>
     <script src="https://kit.fontawesome.com/5441d3e7e3.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div id="outercontainer">
-        <div id="innercontadiner">
-            <header>
-                <a href="../CatTD.html"><img id="header-logo" src="img/icon.png" /></a>
-            </header>
-            <div id="contentdiv">
+<div id="outercontainer">
+    <div id="innercontadiner">
+        <header>
+            <a href="../CatTD.html"><img id="header-logo" src="img/icon.png"/></a>
+        </header>
+        <div id="contentdiv">
 
-                <div style="position: relative; display: inline-block;">
-                    <canvas id="canvas"></canvas>
-                    <div id="gameover">GAME OVER
-                    </div>
-                    <div id="hearts">10</div>
-                    <i id="heartsIcon" class="fa-solid fa-heart"></i>
-                    <div id="coins">100</div>
-                    <i id="coinsIcon"  class="fa-solid fa-coins"></i>
+            <div style="position: relative; display: inline-block;">
+                <canvas id="canvas"></canvas>
+                <div id="gameover">GAME OVER
                 </div>
-            
-           
+                <div id="hearts">10</div>
+                <i id="heartsIcon" class="fa-solid fa-heart"></i>
+                <div id="coins">100</div>
+                <i id="coinsIcon" class="fa-solid fa-coins"></i>
+            </div>
+
+
             <script src="assets/placementTiles_map1.js"></script>
             <script src="assets/waypoints_map1.js"></script>
-            <script src="js/classes.js"></script>
+            <script src="js/classes/Cat.js"></script>
+            <script src="js/classes/Enemy.js"></script>
+            <script src="js/classes/PlacementTile.js"></script>
+            <script src="js/classes/Projectile.js"></script>
             <script src="js/game.js"></script>
 
-            </div>
         </div>
     </div>
-    <footer>
-        <div>
-            <a href="ref/imprint.html" id="footer_text">Imprint</a>
-            <a href="ref/privacypolice.html" id="footer_text">Privacy Policy</a>
-        </div>
-        <div id="footer_text">
-            <button id="logoutButton" onclick="logout()">
-                <i class="fa-solid fa-right-from-bracket"></i>
-            </button>
-            <script>
-                function logout() {
-                    deleteCookie("name");
-                    window.open("../CatTD.html", "_self");
-                }
-            </script>
-            © 2023
-        </div>
-    </footer>
+</div>
+<footer>
+    <div>
+        <a href="ref/imprint.html" id="footer_text">Imprint</a>
+        <a href="ref/privacypolice.html" id="footer_text">Privacy Policy</a>
+    </div>
+    <div id="footer_text">
+        <button id="logoutButton" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </button>
+        <script>
+            function logout() {
+                deleteCookie("name");
+                window.open("../CatTD.html", "_self");
+            }
+        </script>
+        © 2023
+    </div>
+</footer>
 </body>
 
 </html>
