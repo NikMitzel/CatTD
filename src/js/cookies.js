@@ -8,5 +8,10 @@ function getCookie(name) {
 }
 
 function deleteCookie(name) {
+<<<<<<< Updated upstream
     localStorage.removeItem(name)
 }
+=======
+    document.cookie = name + '=;Max-Age=-99999999;path=/;';
+}
+>>>>>>> Stashed changes

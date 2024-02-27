@@ -22,7 +22,7 @@
                 <div class="formdiv">
                     <div class="formtitle">Account Login</div>
                     <form onsubmit="return false">
-                        <div id="coming-soon-overlay-text">COMMING SOON</div>
+                        <div id="coming-soon-overlay-text">COMING SOON</div>
                         <div>
                             <input class="input_deact" id="email" type="text" name="E-Mail" placeholder="E-Mail"
                                 disabled />
@@ -105,6 +105,7 @@
                             if (!checkCookieAcceptance()) {
                                 error_message_guest.innerHTML = "Accept cookies first"
                             } else {
+<<<<<<< Updated upstream
                                 var username = document.getElementById("username").value;
                                 if (!username) {
                                     error_message_guest.innerHTML = "Add a Username"
@@ -114,6 +115,11 @@
                                         window.open("src/CatTD_lobby.html", "_self");
                                     }
                                 }
+=======
+                                error_message_guest.innerHTML = "";
+                                setCookie("name", name);
+                                if(getCookie("name"))window.open("src/CatTD_lobby.html", "_self");
+>>>>>>> Stashed changes
                             }
                         }
                     </script>
