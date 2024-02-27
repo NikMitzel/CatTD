@@ -105,21 +105,9 @@
                             if (!checkCookieAcceptance()) {
                                 error_message_guest.innerHTML = "Accept cookies first"
                             } else {
-<<<<<<< Updated upstream
-                                var username = document.getElementById("username").value;
-                                if (!username) {
-                                    error_message_guest.innerHTML = "Add a Username"
-                                } else {
-                                    setCookie("username", username)
-                                    if (getCookie('username') != null) {
-                                        window.open("src/CatTD_lobby.html", "_self");
-                                    }
-                                }
-=======
                                 error_message_guest.innerHTML = "";
                                 setCookie("name", name);
                                 if(getCookie("name"))window.open("src/CatTD_lobby.html", "_self");
->>>>>>> Stashed changes
                             }
                         }
                     </script>
