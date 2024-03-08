@@ -2,14 +2,19 @@
 <html lang="en">
 
 <head>
+    <title>CatTD - Lobby</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="img/icon.png" type="image/x-icon" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet" />
-    <title>CatTD - Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Carter+One" rel="stylesheet" />
     <link rel="stylesheet" href="css/Styles.css" />
-    <script type="application/javascript" src="js/cookies.js"></script>
     <script src="https://kit.fontawesome.com/5441d3e7e3.js" crossorigin="anonymous"></script>
+    <script type="application/javascript" src="js\cookies.js"></script>
+    <script>
+        if (getCookie('username') === undefined) {
+            window.open("../CatTD.html", "_self");
+        }
+    </script>
 </head>
 
 <body>
@@ -20,67 +25,83 @@
             </header>
             <div id="contentdiv">
                 <div>
-                    <div id="lobby_header">Choose a Map</div>
+                    <div id="lobby_header">CHOOSE A MAP</div>
                     <div id="mapChoose">
-                        <button class="submit_button" onclick="pervMap()">
-                            < </button>
-                                <img src="assets\map1.png" id="mapImg" alt="" width="800px">
-                                <button class="submit_button" onclick="nextMap()">></button>
+                        <button class="game-button" id="left" onclick="pervMap()"> < </button>
+                        <img src="assets\map1.png" style="margin-left: 30px; margin-right: 30px;" id="mapImg" alt="" width="800px">
+                        <button class="game-button" id="right" onclick="nextMap()">></button>
                     </div>
-                    <div>
-                        <button class="submit_button" onclick="playStart()">
-                            Play
+                    <div id="playbuttonDiv">
+                        <button class="game-button" id="playButton" onclick="playStart()">
+                            PLAY
                         </button>
 
                     </div>
-                    <script>
-                        let mapValu = 1;
-                        let nuberOfMaps = 3;
-                        setCookie("map", mapValu)
-                        function playStart() {
-                            window.open("CatTD_game.html", "_self");
-                        }
-                        function pervMap() {
-                            if (mapValu > 1) {
-                                mapValu--;
-                            } else {
-                                mapValu = 3;
-                            }
-                            setCookie("map", mapValu)
-                            document.getElementById("mapImg").src = "\assets/map" + mapValu + ".png";
-                        }
-                        function nextMap() {
-                            if (mapValu < 3) {
-                                mapValu++;
-                            } else {
-                                mapValu = 1;
-                            }
-                            setCookie("map", mapValu)
-                            document.getElementById("mapImg").src = "\assets/map" + mapValu + ".png";
-                        }
-                    </script>
-
-                    <h1>Leaderboard</h1>
-                    <ol id="leaderboard"></ol>
-
-                    <script src="js/Leaderboard.js"></script>
-                    <script>
-                        
-                        const leaderboardData = JSON.parse(localStorage.getItem('leaderboard')) || [];
-
-                        leaderboardData.sort((a, b) => b.score - a.score);
-
-                        const leaderboardElement = document.getElementById('leaderboard');
-                        leaderboardElement.innerHTML = '';
-                        leaderboardData.forEach(user => {
-                            const listItem = document.createElement('li');
-                            listItem.textContent = `${user.name}: ${user.score} points`;
-                            leaderboardElement.appendChild(listItem);
-                        });
-                    </script>
-
-
                 </div>
+                <script>
+                    function playStart() {
+                        window.open("CatTD_game.html", "_self");
+                    }
+
+                    let mapValu = 1;
+                    let nuberOfMaps = 3;
+                    setCookie("map", mapValu)
+                    function pervMap() {
+                        if (mapValu > 1) {
+                            mapValu--;
+                        } else {
+                            mapValu = 3;
+                        }
+                        document.getElementById("mapImg").src = "\assets/map" + mapValu + ".png";
+                        setCookie("map", mapValu)
+                    }
+                    function nextMap() {
+                        if (mapValu < 3) {
+                            mapValu++;
+                        } else {
+                            mapValu = 1;
+                        }
+                        document.getElementById("mapImg").src = "\assets/map" + mapValu + ".png";
+                        setCookie("map", mapValu)
+                    }
+                </script>
+
+                <div>
+                    <a id="leaderbord_header">Leaderboard</a>
+                    <div id="leaderboard">
+                        <div class="leaderboardcolumn">
+                            <div  style="color: white;">
+                                #<a  style="color: white;">[num]</a>
+                                <a  style="color: white;">[name]</a>
+                            </div>
+                            <div  style="color: white;">
+                                <a  style="color: white;">[points]</a>  
+                                ★
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <script src="js/Leaderboard.js"></script>
+                <script>
+
+                    const leaderboardData = JSON.parse(localStorage.getItem('leaderboard')) || [];
+
+                    leaderboardData.sort((a, b) => b.score - a.score);
+
+                    const leaderboardElement = document.getElementById('leaderboard');
+                    leaderboardElement.innerHTML = '';
+                    let i = 0;
+                    leaderboardData.forEach(column => {
+                        i++;
+                        leaderboardElement.innerHTML += "<div class='leaderboardcolumn'> <div  style='color: white;'>#<a  style='color: white;'>"+i+"</a> <a  style='color: white;'>"+`${column.name}`+"</a></div><div  style='color: white;'> <a  style='color: white;'>"+`${column.score}`+"</a> ★</div></div>"
+                    });
+                </script>
+
+
+
 
             </div>
         </div>
@@ -90,7 +111,7 @@
             <a href="ref/imprint.html" class="footer_text">Imprint</a>
             <a href="ref/privacypolice.html" class="footer_text">Privacy Policy</a>
         </div>
-        <div>
+        <div style="display: flex; flex-direction: row;">
             <button id="logoutButton" class="footer_text" onclick="logout()">
                 <a id="usernameDisplay"></a>
                 <i class="fa-solid fa-right-from-bracket"></i>
@@ -103,9 +124,13 @@
                     window.open("../CatTD.html", "_self");
                 }
             </script>
-            © 2023
+            <div class="footer_text">© 2024</div>
         </div>
     </footer>
 </body>
+
+<script>
+    document.getElementById('usernameDisplay').innerHTML = getCookie("username")
+</script>
 
 </html>

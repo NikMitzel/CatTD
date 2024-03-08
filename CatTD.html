@@ -2,14 +2,19 @@
 <html lang="en">
 
 <head>
+    <title>CatTD - Login</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="src/img/icon.png" type="image/x-icon" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet" />
-    <title>CatTD - Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Carter+One" rel="stylesheet" />
     <link rel="stylesheet" href="src/css/Styles.css" />
+
     <script type="application/javascript" src="src\js\cookies.js"></script>
-    <script src="https://kit.fontawesome.com/5441d3e7e3.js" crossorigin="anonymous"></script>
+    <script>
+        if (getCookie('username') != null) {
+            window.open("src/CatTD_lobby.html", "_self");
+        }
+    </script>
 </head>
 
 <body>
@@ -19,104 +24,63 @@
                 <a href="CatTD.html"><img id="header-logo" src="src/img/icon.png" /></a>
             </header>
             <div id="contentdiv">
-                <div class="formdiv">
-                    <div class="formtitle">Account Login</div>
-                    <form onsubmit="return false">
-                        <div id="coming-soon-overlay-text">COMING SOON</div>
+                <div id="forms_div">
+                    <div class="formdiv">
+                        <div class="formtitle">Account Login</div>
                         <div>
-                            <input class="input_deact" id="email" type="text" name="E-Mail" placeholder="E-Mail"
-                                disabled />
+                            <div id="coming-soon-overlay-text">COMING SOON</div>
+                            <div>
+                                <input class="input_deact" id="email" type="text" name="E-Mail" placeholder="E-Mail"
+                                    disabled />
+                            </div>
+                            <div>
+                                <input class="input_deact" id="password" type="password" name="Passwort"
+                                    placeholder="Passwort" disabled />
+                            </div>
+                            <div>
+                                <button class="game-button deact" id="formSubmit2">‪</button>
+                            </div>
+                            <div class="error_messages"></div>
                         </div>
+                    </div>
+                    <div class="formdiv">
+                        <div class="formtitle">Join as Guest</div>
                         <div>
-                            <input class="input_deact" id="password" type="password" name="Passwort"
-                                placeholder="Passwort" disabled />
+                            <div>
+                                <input id="username" type="text" name="name" placeholder="Username" />
+                            </div>
+                            <div>
+                                <button class="game-button" id="formSubmit" onclick="playAsGuest()">
+                                    Play
+                                </button>
+                            </div>
+                            <div class="error_messages" id="error_message_guest"></div>
                         </div>
-                        <div>
-                            <button class="submit_button" id="submitLogin">Login</button>
-                        </div>
-                        <div class="error_messages"></div>
-                    </form>
-
-                    <!-- <script>
-                        for login(comming soon)
-                        let https = "http://localhost:8080/api/";
-                        function send(method, apiSection, data, callback) {
-                            let xhr = new XMLHttpRequest();
-                            xhr.open(method, https + apiSection, true);
-                            xhr.onreadystatechange = function () {
-                                if (xhr.readyState === 4) {
-                                    if (xhr.status === 200) {
-                                        callback(xhr.responseText)
-                                    } else {
-                                        callback(xhr.status)
-                                    }
-                                }
-                            }
-                            xhr.setRequestHeader("Content-Type", "application/json");
-                            xhr.send(data);
-                        }
-                        
-                        document.getElementById('submitLogin').onclick = function () {
-                            login();
-                        };
-    
-                        function login() {
-                            let error_message = document.getElementById("error_message")
-                            var email = document.getElementById('email').value;
-                            var password = document.getElementById('password').value;
-                            let data = {
-                                "email": email,
-                                "password": password
-                            }
-                            send("POST", "user/checkLogin", JSON.stringify(data), function (response) {
-                                console.log(response)
-                                if (response === "true") {
-                                    setCookie("email", email)
-                                    window.open("BookTickets.html", "_self")
-                                }else if (response === "false"){   
-                                    error_message.innerHTML = "Email or Password incorrect"
-                                }
-                            })
-                        }
-                    </script>-->
-                </div>
-                <div class="formdiv">
-                    <div class="formtitle">Join as Guest</div>
-
-                    <form onsubmit="return false">
-
-                        <div>
-                            <input id="username" type="text" name="name" placeholder="Username" />
-                        </div>
-                        <div>
-                            <button class="submit_button" id="submitPlayAsGuest" onclick="playAsGuest()">
-                                Play
-                            </button>
-                        </div>
-                        <div class="error_messages" id="error_message_guest"></div>
-                    </form>
-                    <!-- play as guest function-->
-                    <script>
-                        if (getCookie('username') != null) {
-                            window.open("src/CatTD_lobby.html", "_self");
-                        }
-                        function playAsGuest() {
-                            error_message_guest.innerHTML = ""
-                            if (!checkCookieAcceptance()) {
-                                error_message_guest.innerHTML = "Accept cookies first"
-                            } else {
-                                var username = document.getElementById("username").value;
-                                if (!username) {
-                                    error_message_guest.innerHTML = "Add a Username"
+                        <!-- play as guest function-->
+                        <script>
+                            function playAsGuest() {
+                                error_message_guest.innerHTML = ""
+                                if (!checkCookieAcceptance()) {
+                                    error_message_guest.innerHTML = "Accept cookies first"
                                 } else {
-                                    setCookie("username", username)
-                                    if (getCookie('username') != null) {
-                                        window.open("src/CatTD_lobby.html", "_self");
+                                    var username = document.getElementById("username").value;
+                                    if (!username) {
+                                        error_message_guest.innerHTML = "Add a Username"
+                                    } else {
+                                        setCookie("username", username)
+                                        if (getCookie('username') != null) {
+                                            window.open("src/CatTD_lobby.html", "_self");
+                                        }
                                     }
                                 }
                             }
-                        }
-                    </script>
+                            document.getElementById("username").addEventListener("keyup", function (event) {
+                                    if (event.key === "Enter") {
+                                        playAsGuest()
+                                    }
+                                });
+                        </script>
+                    </div>
                 </div>
 
 
@@ -124,21 +88,25 @@
                 <!-- Cookie System -->
                 <div id="cookiePopup">
                     This website uses cookies to ensure the best experience. <a href="src/ref/privacypolice.html">Learn
-                        more</a>.
-                    <button onclick="acceptCookies()">Accept</button>
+                        more</a>.AcceptCookie
+                    <button class="game-button" onclick="acceptCookies()">Accept</button>
                 </div>
 
                 <script>
                     // Überprüfen, ob bereits akzeptiert wurde
                     function checkCookieAcceptance() {
                         var accepted = getCookie('cookiesAccepted');
-                        return accepted === 'true';
+                        if (accepted === 'true') {
+                            document.getElementById('formSubmit').style.disabled = 'true';
+                            return true
+                        }
+                        return false
                     }
 
                     // Akzeptieren und ausblenden
                     function acceptCookies() {
                         setCookie('cookiesAccepted', 'true');
-                        document.getElementById('submitPlayAsGuest').disabled = false;
+                        document.getElementById('formSubmit').style.disabled = 'false';
                         document.getElementById('cookiePopup').style.display = 'none';
                     }
 
@@ -156,7 +124,7 @@
             <a href="src/ref/imprint.html" class="footer_text">Imprint</a>
             <a href="src/ref/privacypolice.html" class="footer_text">Privacy Policy</a>
         </div>
-        <div class="footer_text">© 2023</div>
+        <div class="footer_text">© 2024</div>
     </footer>
 </body>
 
