@@ -23,28 +23,35 @@
             <a href="../CatTD.html" onclick="leavPage()"><img id="header-logo" src="img/icon.png"/></a>
         </header>
         <div id="contentdiv">
-
-            <div style="position: relative; display: inline-block;">
-                <canvas id="canvas"></canvas>
-                <div id="gameover">GAME OVER
+            <div style="display: flex;">
+                <div style="position: relative; display: inline-block;">
+                    <canvas id="canvas"></canvas>
+                    <div id="gameover">GAME OVER
+                    </div>
+                    <div id="hearts">10</div>
+                    <i id="heartsIcon" class="fa-solid fa-heart"></i>
+                    <div id="coins">100</div>
+                    <i id="coinsIcon" class="fa-solid fa-coins"></i>
                 </div>
-                <div id="hearts">10</div>
-                <i id="heartsIcon" class="fa-solid fa-heart"></i>
-                <div id="coins">100</div>
-                <i id="coinsIcon" class="fa-solid fa-coins"></i>
+    
+    
+                <script src="assets/placementTiles_map1.js"></script>
+                <script src="assets/waypoints_map1.js"></script>
+                <script src="js/classes/Sprite.js"></script>
+                <script src="js/classes/Cat.js"></script>
+                <script src="js/classes/Enemy.js"></script>
+                <script src="js/classes/PlacementTile.js"></script>
+                <script src="js/classes/Projectile.js"></script>
+                <script src="js/game.js"></script>
+                <script src="js/Leaderboard.js"></script>
+                
+                <!--
+                <div>
+                    <button class="game-button"><i style="color: white;" class="fa-solid fa-play"></i></button>
+                    uisdffuis
+                </div>
+                -->
             </div>
-
-
-            <script src="assets/placementTiles_map1.js"></script>
-            <script src="assets/waypoints_map1.js"></script>
-            <script src="js/classes/Sprite.js"></script>
-            <script src="js/classes/Cat.js"></script>
-            <script src="js/classes/Enemy.js"></script>
-            <script src="js/classes/PlacementTile.js"></script>
-            <script src="js/classes/Projectile.js"></script>
-            <script src="js/game.js"></script>
-            <script src="js/Leaderboard.js"></script>
-
         </div>
     </div>
 </div>
