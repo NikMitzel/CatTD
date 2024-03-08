@@ -45,12 +45,32 @@
                 <script src="js/game.js"></script>
                 <script src="js/Leaderboard.js"></script>
                 
-                <!--
-                <div>
-                    <button class="game-button"><i style="color: white;" class="fa-solid fa-play"></i></button>
-                    uisdffuis
+                
+                <div style="display: flex; flex-direction: column;">
+                    <div>
+                        <button onclick="resume()" class="game-button icon"><i style="color: white;" class="fa-solid fa-play"></i></button>
+                        <button onclick="pause()" class="game-button icon"><i style="color: white;" class="fa-solid fa-pause"></i></i></button>
+                        <button onclick="restart()" class="game-button icon"><i style="color: white;" class="fa-solid fa-rotate-right"></i></i></button>
+                    </div>
+                    <script>
+                        function resume(){
+
+                        }
+                        function restart(){
+                            window.open("CatTD_game.html", "_self");
+                        }
+                    </script>
+                    <div id="towerCooser">
+                        <div class="towerCooserTower"></div>
+                        <div class="towerCooserTower"></div>
+                        <div class="towerCooserTower"></div>
+                        <div class="towerCooserTower"></div>
+                        <div class="towerCooserTower"></div>
+                        <div class="towerCooserTower"></div>
+
+                    </div>
                 </div>
-                -->
+                
             </div>
         </div>
     </div>

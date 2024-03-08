@@ -179,3 +179,10 @@ function leavPage() {
     let points = coins + (kills * 100) 
     addPlayerToLeaderboard(getCookie("username"), points);
 }
+
+
+/*custom*/
+function pause(){
+    cancelAnimationFrame(requestAnimationFrame(animate)
+    )
+}

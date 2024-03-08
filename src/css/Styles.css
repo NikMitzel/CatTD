@@ -249,6 +249,11 @@ input:focus {
     top: 0px;
 }
 
+.game-button.icon{
+    width: 80px;
+    height: 80px;
+}
+
 
 /*individual adjustments*/
 #error_message_guest {
@@ -428,8 +433,22 @@ input:focus {
     display: flex;
     justify-content: center;
 }
-/*responsive CSS for mobile Phone*/
-@media screen and (max-width: 600px) {
 
+#towerCooser{
+    margin-left: 15px;
+    width: 305px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #aa3ef7;
+    flex-wrap: wrap;9c
 
+}
+
+.towerCooserTower{
+    background-color: #842fc0 ;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    width: 100px;
+    height: 100px;
 }
