@@ -143,7 +143,7 @@
                             <button onclick="choose('flameTainChooser')" id="flameTainChooser" class="towerCooserTowerActive">
                                 <img height="200px" src="img/icon.gif">FLAME TAIL
                             </button>
-                            <button onclick="choose('asdasd')" id="asdasd" class="towerCooserTower">
+                            <button onclick="choose('woaTainChooser')" id="woaTainChooser" class="towerCooserTower">
                                 <img height="200px" style="filter: hue-rotate(200deg);" src="img/icon.gif">WO'A TAIL
                             </button>
                         </div>
@@ -153,6 +153,7 @@
                                 Array.from(document.getElementsByClassName("towerCooserTowerActive")).forEach(
                                     function (element, index, array) {
                                         element.className = 'towerCooserTower'
+                                        setCookie("towerCoosen", id)
                                     }
                                 );
                                 document.getElementById(id).className = 'towerCooserTowerActive'
