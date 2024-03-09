@@ -1,6 +1,13 @@
-class Cat {
+class Cat extends Sprite{
     constructor({position = {x:0,y:0}}){
-        this.position = position
+        super({
+            position,
+            imageSrc: './img/FlameTailSprite.png',
+            frames: {
+                max: 12
+            }
+        })
+        
         this.size = 64
         this.center = {
             x: this.position.x + this.size / 2,
@@ -10,13 +17,12 @@ class Cat {
         this.shootRadius = 250
         this.shootingSpeed = 100
         this.target
-        this.frames = 0
+        this.elapsedSpawnTime = 0
         this.cost = 50
     }
 
     draw() {
-        c.fillStyle = 'blue'
-        c.fillRect(this.position.x,this.position.y, this.size, this.size)
+       super.draw()
 
 
         c.beginPath()
@@ -29,7 +35,7 @@ class Cat {
 
     update(){
         this.draw()
-        if (this.frames % this.shootingSpeed === 0 && this.target) {
+        if (this.elapsedSpawnTime % this.shootingSpeed === 0 && this.target) {
             this.projectiles.push(
                 new Projectile({
                     position: {
@@ -40,6 +46,6 @@ class Cat {
                 })
             )
         }
-        this.frames++
+        this.elapsedSpawnTime++
     }
 }
