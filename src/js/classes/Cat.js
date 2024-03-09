@@ -5,6 +5,10 @@ class Cat extends Sprite{
             imageSrc: './img/FlameTailSprite.png',
             frames: {
                 max: 12
+            },
+            offset:{
+                x: -20,
+                y: -50
             }
         })
         
@@ -17,7 +21,6 @@ class Cat extends Sprite{
         this.shootRadius = 250
         this.shootingSpeed = 100
         this.target
-        this.elapsedSpawnTime = 0
         this.cost = 50
     }
 
@@ -35,17 +38,19 @@ class Cat extends Sprite{
 
     update(){
         this.draw()
-        if (this.elapsedSpawnTime % this.shootingSpeed === 0 && this.target) {
-            this.projectiles.push(
-                new Projectile({
-                    position: {
-                        x: this.center.x,
-                        y: this.center.y
-                    },
-                    enemy: this.target
-                })
-            )
-        }
-        this.elapsedSpawnTime++
+        if(this.target && this.frames.current === 6 && this.frames.elapsed % this.frames.hold === 0) this.shoot()        
+    }
+
+    shoot() {
+        this.projectiles.push(
+            new Projectile({
+                position: {
+                    x: this.center.x -47,
+                    y: this.center.y - 52
+                },
+                enemy: this.target
+            })
+        )
+    
     }
 }

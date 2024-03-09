@@ -1,5 +1,5 @@
 class Sprite {
-    constructor({position = {x: 0, y: 0}, imageSrc, frames = {max: 1}}) {
+    constructor({position = {x: 0, y: 0}, imageSrc, frames = {max: 1}, offset = {x:0, y:0}}) {
         this.position = position
         this.image = new Image()
         this.image.src = imageSrc
@@ -7,9 +7,10 @@ class Sprite {
             max: frames.max,
             current: 0,
             elapsed : 0,
-            hold : 5
+            hold : 3
 
         }
+        this.offset = offset
     }
 
     draw() {
@@ -22,7 +23,7 @@ class Sprite {
             width: cropWidth,
             height: this.image.height
         }
-        c.drawImage(this.image, crop.position.x, crop.position.y, crop.width, crop.height,this.position.x, this.position.y, crop.width, crop.height)
+        c.drawImage(this.image, crop.position.x, crop.position.y, crop.width, crop.height,this.position.x + this.offset.x, this.position.y + this.offset.y, crop.width, crop.height)
 
         this.frames.elapsed++
         if(this.frames.elapsed % this.frames.hold === 0){
