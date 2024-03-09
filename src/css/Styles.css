@@ -596,6 +596,7 @@ input[type="range"]{
     background-color: transparent;
     border: rgba(0, 0, 0, 0.316);
     border-style: solid;
+    color: white;
 }
 
 .towerCooserTowerActive{
@@ -607,5 +608,5 @@ input[type="range"]{
     border-color: white;
     background-color: rgba(255, 255, 255, 0.259);
     border-style: solid;
-    
+    color: white;
 }
