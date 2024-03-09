@@ -580,7 +580,7 @@ input[type="range"]{
 
 #towerCooser{
     margin-left: 15px;
-    width: 305px;
+    width: 315px;
     display: flex;
     justify-content: space-around;
     background-color: #aa3ef7;
@@ -588,10 +588,24 @@ input[type="range"]{
 }
 
 .towerCooserTower{
-    background-color: #842fc0 ;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 10px;
-    width: 100px;
-    height: 100px;
+    display: grid;
+    justify-content: center;
+    width: 150px;
+    margin: 2px;
+    font-size: larger;
+    background-color: transparent;
+    border: rgba(0, 0, 0, 0.316);
+    border-style: solid;
+}
+
+.towerCooserTowerActive{
+    display: grid;
+    justify-content: center;
+    width: 150px;
+    margin: 2px;
+    font-size: larger;
+    border-color: white;
+    background-color: rgba(255, 255, 255, 0.259);
+    border-style: solid;
+    
 }
