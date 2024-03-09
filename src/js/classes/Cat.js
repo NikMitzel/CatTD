@@ -38,6 +38,7 @@ class Cat extends Sprite{
 
     update(){
         this.draw()
+        if(this.target || (!this.target && this.frames.current !==0)) super.update()
         if(this.target && this.frames.current === 6 && this.frames.elapsed % this.frames.hold === 0) this.shoot()        
     }
 

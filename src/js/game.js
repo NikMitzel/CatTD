@@ -156,6 +156,9 @@ addEventListener('click', (event) => {
         coins -= cats[cats.length -1].cost
         document.querySelector('#coins').innerHTML = coins
         activeTile.isOccupied = true
+        cats.sort((a, b) => {
+            return a.position.y - b.position.y
+        })
     }
 })
 
