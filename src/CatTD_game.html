@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>CatTD - Game</title>
     <meta charset="UTF-8" />
@@ -12,25 +13,43 @@
     <script>
         if (getCookie('username') === undefined) {
             window.open("../CatTD.html", "_self");
-      }
+        }
     </script>
 </head>
 
 <body>
     <div id="musicControls">
         <i id="musicControlsvolumeicon" class="fa-solid fa-volume-low"></i>
-        <input id="musicControlsValume" type="range"  min="1" max="100" step="0.5"  value="50" onchange="updateVolume(this.value)">
+        <input id="musicControlsValume" type="range" min="0" max="100" step="0.5" value="50"
+            onchange="updateVolume(this.value)">
         <button id="musicControlsPlayPause" onclick="playPauseLobby()" class="game-button"></button>
     </div>
 
     <script>
         let beat = new Audio('/src/music/ingame.mp3');
         beat.volume = getCookie("volume")
-        document.getElementById('musicControlsValume').value = getCookie("volume")*100
 
-        function updateVolume(volume){
-            setCookie("volume", volume/100)
-            beat.volume = volume/100;
+        let volume = getCookie("volume") * 100
+        if (!volume) {
+            document.getElementById('musicControlsvolumeicon').className = 'fa-solid fa-volume-off'
+        } else if (volume >= 60) {
+            document.getElementById('musicControlsvolumeicon').className = 'fa-solid fa-volume-high'
+        } else {
+            document.getElementById('musicControlsvolumeicon').className = 'fa-solid fa-volume-low'
+        }
+        document.getElementById('musicControlsValume').value = getCookie("volume") * 100
+
+        function updateVolume(volume) {
+            setCookie("volume", volume / 100)
+            beat.volume = volume / 100;
+            console.log(volume)
+            if (volume == 0) {
+                document.getElementById('musicControlsvolumeicon').className = 'fa-solid fa-volume-off'
+            } else if (volume >= 60) {
+                document.getElementById('musicControlsvolumeicon').className = 'fa-solid fa-volume-high'
+            } else {
+                document.getElementById('musicControlsvolumeicon').className = 'fa-solid fa-volume-low'
+            }
         }
 
         function playPauseLobby() {
@@ -43,84 +62,87 @@
             }
         }
     </script>
-<div id="outercontainer">
-    <div id="innercontadiner">
-        <header>
-            <a href="../CatTD.html" onclick="leavPage()"><img id="header-logo" src="img/icon.png"/></a>
-        </header>
-        <div id="contentdiv">
-            <div style="display: flex;">
-                <div style="position: relative; display: inline-block;">
-                    <canvas id="canvas"></canvas>
-                    <div id="gameover">GAME OVER
+    <div id="outercontainer">
+        <div id="innercontadiner">
+            <header>
+                <a href="../CatTD.html" onclick="leavPage()"><img id="header-logo" src="img/icon.gif" /></a>
+            </header>
+            <div id="contentdiv">
+                <div style="display: flex;">
+                    <div style="position: relative; display: inline-block;">
+                        <canvas id="canvas"></canvas>
+                        <div id="gameover">GAME OVER
+                        </div>
+                        <div id="hearts">10</div>
+                        <i id="heartsIcon" class="fa-solid fa-heart"></i>
+                        <div id="coins">100</div>
+                        <i id="coinsIcon" class="fa-solid fa-coins"></i>
                     </div>
-                    <div id="hearts">10</div>
-                    <i id="heartsIcon" class="fa-solid fa-heart"></i>
-                    <div id="coins">100</div>
-                    <i id="coinsIcon" class="fa-solid fa-coins"></i>
-                </div>
-    
-    
-                <script src="assets/placementTiles_map1.js"></script>
-                <script src="assets/waypoints_map1.js"></script>
-                <script src="js/classes/Sprite.js"></script>
-                <script src="js/classes/Cat.js"></script>
-                <script src="js/classes/Enemy.js"></script>
-                <script src="js/classes/PlacementTile.js"></script>
-                <script src="js/classes/Projectile.js"></script>
-                <script src="js/game.js"></script>
-                <script src="js/Leaderboard.js"></script>
-                
-                
-                <div style="display: flex; flex-direction: column;">
-                    <div>
-                        <button onclick="resume()" class="game-button icon"><i style="color: white;" class="fa-solid fa-play"></i></button>
-                        <button onclick="pause()" class="game-button icon"><i style="color: white;" class="fa-solid fa-pause"></i></i></button>
-                        <button onclick="restart()" class="game-button icon"><i style="color: white;" class="fa-solid fa-rotate-right"></i></i></button>
-                    </div>
-                    <script>
-                        function resume(){
 
-                        }
-                        function restart(){
-                            window.open("CatTD_game.html", "_self");
-                        }
-                    </script>
-                    <div id="towerCooser">
-                        <div class="towerCooserTower"></div>
-                        <div class="towerCooserTower"></div>
-                        <div class="towerCooserTower"></div>
-                        <div class="towerCooserTower"></div>
-                        <div class="towerCooserTower"></div>
-                        <div class="towerCooserTower"></div>
 
+                    <script src="assets/placementTiles_map1.js"></script>
+                    <script src="assets/waypoints_map1.js"></script>
+                    <script src="js/classes/Sprite.js"></script>
+                    <script src="js/classes/Cat.js"></script>
+                    <script src="js/classes/Enemy.js"></script>
+                    <script src="js/classes/PlacementTile.js"></script>
+                    <script src="js/classes/Projectile.js"></script>
+                    <script src="js/game.js"></script>
+                    <script src="js/Leaderboard.js"></script>
+
+
+                    <div style="display: flex; flex-direction: column;">
+                        <div>
+                            <button onclick="" class="game-button icon"><i style="color: white;"
+                                    class="fa-solid fa-play"></i></button>
+                            <button onclick="" class="game-button icon"><i style="color: white;"
+                                    class="fa-solid fa-pause"></i></i></button>
+                            <button onclick="restart()" class="game-button icon"><i style="color: white;"
+                                    class="fa-solid fa-rotate-right"></i></i></button>
+                        </div>
+                        <script>
+
+
+
+                            function restart() {
+                                window.open("CatTD_game.html", "_self");
+                            }
+                        </script>
+                        <div id="towerCooser">
+                            <div class="towerCooserTower"></div>
+                            <div class="towerCooserTower"></div>
+                            <div class="towerCooserTower"></div>
+                            <div class="towerCooserTower"></div>
+                            <div class="towerCooserTower"></div>
+                            <div class="towerCooserTower"></div>
+
+                        </div>
                     </div>
+
                 </div>
-                
             </div>
         </div>
     </div>
-</div>
-<footer>
-    <div>
-        <a href="ref/imprint.html" class="footer_text">Imprint</a>
-        <a href="ref/privacypolice.html" class="footer_text">Privacy Policy</a>
-    </div>
-    <div style="display: flex; flex-direction: row;">
-        <button id="logoutButton" class="footer_text" onclick="logout()">
-            <a id="usernameDisplay"></a>
-            <i class="fa-solid fa-right-from-bracket"></i>
-        </button>
-        <script>
-            function logout() {
-                getCookie("username")
-                deleteCookie("username");
-                window.open("../CatTD.html", "_self");
-            }
-        </script>
-        <div class="footer_text">© 2024</div>
-    </div>
-</footer>
+    <footer>
+        <div>
+            <a href="ref/imprint.html" class="footer_text">Imprint</a>
+            <a href="ref/privacypolice.html" class="footer_text">Privacy Policy</a>
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <button id="logoutButton" class="footer_text" onclick="logout()">
+                <a id="usernameDisplay"></a>
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+            <script>
+                function logout() {
+                    getCookie("username")
+                    deleteCookie("username");
+                    window.open("../CatTD.html", "_self");
+                }
+            </script>
+            <div class="footer_text">© 2024</div>
+        </div>
+    </footer>
 </body>
 <script>
     document.getElementById('usernameDisplay').innerHTML = getCookie("username")
@@ -131,5 +153,7 @@
     } else {
         document.getElementById('musicControlsPlayPause').innerHTML = '<i class="fa-solid fa-pause"></i>'
     }
+
 </script>
+
 </html>

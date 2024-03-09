@@ -20,18 +20,36 @@
 <body>
     <div id="musicControls">
         <i id="musicControlsvolumeicon" class="fa-solid fa-volume-low"></i>
-        <input id="musicControlsValume" type="range"  min="1" max="100" step="0.5"  value="50" onchange="updateVolume(this.value)">
+        <input id="musicControlsValume" type="range" min="0" max="100" step="0.5" value="50"
+            onchange="updateVolume(this.value)">
         <button id="musicControlsPlayPause" onclick="playPauseLobby()" class="game-button"></button>
     </div>
 
     <script>
         let beat = new Audio('/src/music/lobby.mp3');
         beat.volume = getCookie("volume")
-        document.getElementById('musicControlsValume').value = getCookie("volume")*100
 
-        function updateVolume(volume){
-            setCookie("volume", volume/100)
-            beat.volume = volume/100;
+        let volume = getCookie("volume") * 100
+        if (!volume) {
+            document.getElementById('musicControlsvolumeicon').className = 'fa-solid fa-volume-off'
+        } else if (volume >= 60) {
+            document.getElementById('musicControlsvolumeicon').className = 'fa-solid fa-volume-high'
+        } else {
+            document.getElementById('musicControlsvolumeicon').className = 'fa-solid fa-volume-low'
+        }
+        document.getElementById('musicControlsValume').value = getCookie("volume") * 100
+
+        function updateVolume(volume) {
+            setCookie("volume", volume / 100)
+            beat.volume = volume / 100;
+            console.log(volume)
+            if (volume == 0) {
+                document.getElementById('musicControlsvolumeicon').className = 'fa-solid fa-volume-off'
+            } else if (volume >= 60) {
+                document.getElementById('musicControlsvolumeicon').className = 'fa-solid fa-volume-high'
+            } else {
+                document.getElementById('musicControlsvolumeicon').className = 'fa-solid fa-volume-low'
+            }
         }
 
         function playPauseLobby() {
@@ -47,7 +65,7 @@
     <div id="outercontainer">
         <div id="innercontadiner">
             <header>
-                <a href="../CatTD.html"><img id="header-logo" src="img/icon.png" /></a>
+                <a href="../CatTD.html"><img id="header-logo" src="img/icon.gif" /></a>
             </header>
             <div id="contentdiv">
                 <div>
