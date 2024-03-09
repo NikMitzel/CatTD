@@ -17,7 +17,7 @@
     </script>
 </head>
 
-<body>
+<body id="ingameBody">
     <div id="musicControls">
         <i id="musicControlsvolumeicon" class="fa-solid fa-volume-low"></i>
         <input id="musicControlsValume" type="range" min="0" max="100" step="0.5" value="50"
@@ -64,7 +64,7 @@
     </script>
     <div id="outercontainer">
         <div id="innercontadiner">
-            <header>
+            <header id="inGameHader">
                 <a href="../CatTD.html" onclick="leavPage()"><img id="header-logo" src="img/icon.gif" /></a>
             </header>
             <div id="contentdiv">
@@ -93,14 +93,44 @@
 
                     <div style="display: flex; flex-direction: column;">
                         <div>
-                            <button onclick="" class="game-button icon"><i style="color: white;"
-                                    class="fa-solid fa-play"></i></button>
-                            <button onclick="" class="game-button icon"><i style="color: white;"
-                                    class="fa-solid fa-pause"></i></i></button>
-                            <button onclick="restart()" class="game-button icon"><i style="color: white;"
-                                    class="fa-solid fa-rotate-right"></i></i></button>
+                            <button onclick="playPauseGame()" class="game-button icon"><i id="playPauseGame" style="color: white;"
+                                    class="fa-solid fa-pause"></i></button>
+                            <button onclick="upspeedGame()" id="upspeedGame" class="game-button icon"><i id="upspeedGameicon" style="color: rgba(255, 255, 255, 0.524);"
+                                    class="fa-solid fa-forward"></i></button>
+                                <button onclick="restart()" class="game-button icon"><i style="color: white;"
+                                    class="fa-solid fa-rotate-right"></i></button>
                         </div>
-                        <script>
+                        <script>    
+                            let gamePause = false;
+
+                            function playPauseGame(){
+                                console.log('comming soon') 
+                                if (gamePause == false){//play
+                                    //add function
+                                    document.getElementById('playPauseGame').className = 'fa-solid fa-play'
+                                    gamePause = true;
+                                } else {//pause
+                                    //add function
+                                    document.getElementById('playPauseGame').className = 'fa-solid fa-pause'
+                                    gamePause = false;
+                                }
+                            }
+
+                            let gameUpspeed = false;
+                            function upspeedGame(){
+                                console.log('comming soon')
+                                if (gameUpspeed == false){//upspeed
+                                     //add function
+                                    document.getElementById('upspeedGame').className = 'game-button iconActive'
+                                    document.getElementById('upspeedGameicon').style = 'color: white'
+                                    gameUpspeed = true;
+                                } else {//normalspeed
+                                     //add function
+                                    document.getElementById('upspeedGame').className = 'game-button icon'
+                                    document.getElementById('upspeedGameicon').style = 'color: rgba(255, 255, 255, 0.524);'
+                                    gameUpspeed = false;
+                                }
+                            }
 
 
 
