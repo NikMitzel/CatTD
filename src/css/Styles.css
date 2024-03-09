@@ -87,7 +87,23 @@ footer {
     text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+#musicControls {
+    right: 5px;
+    position: absolute;
+}
 
+#musicControlsPlayPause{
+    width: 50px;
+    height: 50px;
+}
+
+#musicControlsPlayPause i{
+    top: 8px;
+    right: 12px;
+    position: absolute;
+    font-size: 80%;
+    color: white;
+}
 
 
 /*classes & goups*/
@@ -149,6 +165,11 @@ input:focus {
 
 .input_deact::placeholder {
     color: rgba(0, 0, 0, 0.123);
+}
+
+input[type="range"]{
+    box-shadow: none;
+    padding: 0;
 }
 
 

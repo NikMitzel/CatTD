@@ -18,6 +18,40 @@
 </head>
 
 <body>
+    <audio id="lobby_Audio" src="/src/music/lobby.mp3" type="audio/mpeg"></audio>
+    <div id="musicControls">
+        <input type="range"  min="1" max="100" step="0.5"  value="50" onchange="updateVolume(this.value)">
+        <button id="musicControlsPlayPause" onclick="playPauseLobby()" class="game-button">
+        </button>
+    </div>
+
+    <script>
+        let beat = new Audio('/src/music/lobby.mp3');
+        beat.volume = 0.5;
+        beat.loop = true;
+        beat.play();
+        if (beat.paused) {
+            document.getElementById('musicControlsPlayPause').innerHTML = '<i class="fa-solid fa-play"></i>'
+        } else {
+            document.getElementById('musicControlsPlayPause').innerHTML = '<i class="fa-solid fa-pause"></i>'
+        }
+
+        function updateVolume(volume){
+            beat.volume = volume/100;
+        }
+
+        function playPauseLobby() {
+            if (!beat.paused) {
+                beat.pause();
+                document.getElementById('musicControlsPlayPause').innerHTML = '<i class="fa-solid fa-play"></i>'
+            } else {
+                beat.play();
+                document.getElementById('musicControlsPlayPause').innerHTML = '<i class="fa-solid fa-pause"></i>'
+            }
+        }
+
+
+    </script>
     <div id="outercontainer">
         <div id="innercontadiner">
             <header>
@@ -133,55 +167,6 @@
 
 <script>
     document.getElementById('usernameDisplay').innerHTML = getCookie("username")
-
-
-    // source: https://stackoverflow.com/a/11331200/4298200
-    function Sound(source, volume, loop) {
-        this.source = source;
-        this.volume = volume;
-        this.loop = loop;
-        var son;
-        this.son = son;
-        this.finish = false;
-        this.stop = function () {
-            document.body.removeChild(this.son);
-        }
-        this.start = function () {
-            if (this.finish) return false;
-            this.son = document.createElement("embed");
-            this.son.setAttribute("src", this.source);
-            this.son.setAttribute("hidden", "true");
-            this.son.setAttribute("volume", this.volume);
-            this.son.setAttribute("autostart", "true");
-            this.son.setAttribute("loop", this.loop);
-            document.body.appendChild(this.son);
-        }
-        this.remove = function () {
-            document.body.removeChild(this.son);
-            this.finish = true;
-        }
-        this.init = function (volume, loop) {
-            this.finish = false;
-            this.volume = volume;
-            this.loop = loop;
-        }
-    }
-
-    
-
-    //var ingame = new Sound("../music/ingame.mp3", 100, true);
-
-    var lobby = new Sound("music/lobby.mp3", 100, true);
-    //lobby.start()
-
-    /*
-    var foo = new Sound("url", 100, true);
-    foo.start();
-    foo.stop();
-    foo.start();
-    foo.init(100, false);
-    foo.remove(); 
-    */
 </script>
 
 </html>
