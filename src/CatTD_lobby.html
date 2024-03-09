@@ -27,9 +27,11 @@
                 <div>
                     <div id="lobby_header">CHOOSE A MAP</div>
                     <div id="mapChoose">
-                        <button class="game-button" id="left" onclick="pervMap()"> < </button>
-                        <img src="assets\map1.png" style="margin-left: 30px; margin-right: 30px;" id="mapImg" alt="" width="800px">
-                        <button class="game-button" id="right" onclick="nextMap()">></button>
+                        <button class="game-button" id="left" onclick="pervMap()">
+                            < </button>
+                                <img src="assets\map1.png" style="margin-left: 30px; margin-right: 30px;" id="mapImg"
+                                    alt="" width="800px">
+                                <button class="game-button" id="right" onclick="nextMap()">></button>
                     </div>
                     <div id="playbuttonDiv">
                         <button class="game-button" id="playButton" onclick="playStart()">
@@ -70,17 +72,17 @@
                     <a id="leaderbord_header">Leaderboard</a>
                     <div id="leaderboard">
                         <div class="leaderboardcolumn">
-                            <div  style="color: white;">
-                                #<a  style="color: white;">[num]</a>
-                                <a  style="color: white;">[name]</a>
+                            <div style="color: white;">
+                                #<a style="color: white;">[num]</a>
+                                <a style="color: white;">[name]</a>
                             </div>
-                            <div  style="color: white;">
-                                <a  style="color: white;">[points]</a>  
+                            <div style="color: white;">
+                                <a style="color: white;">[points]</a>
                                 ★
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
 
 
@@ -96,7 +98,7 @@
                     let i = 0;
                     leaderboardData.forEach(column => {
                         i++;
-                        leaderboardElement.innerHTML += "<div class='leaderboardcolumn'> <div  style='color: white;'>#<a  style='color: white;'>"+i+"</a> <a  style='color: white;'>"+`${column.name}`+"</a></div><div  style='color: white;'> <a  style='color: white;'>"+`${column.score}`+"</a> ★</div></div>"
+                        leaderboardElement.innerHTML += "<div class='leaderboardcolumn'> <div  style='color: white;'>#<a  style='color: white;'>" + i + "</a> <a  style='color: white;'>" + `${column.name}` + "</a></div><div  style='color: white;'> <a  style='color: white;'>" + `${column.score}` + "</a> ★</div></div>"
                     });
                 </script>
 
@@ -131,6 +133,55 @@
 
 <script>
     document.getElementById('usernameDisplay').innerHTML = getCookie("username")
+
+
+    // source: https://stackoverflow.com/a/11331200/4298200
+    function Sound(source, volume, loop) {
+        this.source = source;
+        this.volume = volume;
+        this.loop = loop;
+        var son;
+        this.son = son;
+        this.finish = false;
+        this.stop = function () {
+            document.body.removeChild(this.son);
+        }
+        this.start = function () {
+            if (this.finish) return false;
+            this.son = document.createElement("embed");
+            this.son.setAttribute("src", this.source);
+            this.son.setAttribute("hidden", "true");
+            this.son.setAttribute("volume", this.volume);
+            this.son.setAttribute("autostart", "true");
+            this.son.setAttribute("loop", this.loop);
+            document.body.appendChild(this.son);
+        }
+        this.remove = function () {
+            document.body.removeChild(this.son);
+            this.finish = true;
+        }
+        this.init = function (volume, loop) {
+            this.finish = false;
+            this.volume = volume;
+            this.loop = loop;
+        }
+    }
+
+    
+
+    //var ingame = new Sound("../music/ingame.mp3", 100, true);
+
+    var lobby = new Sound("music/lobby.mp3", 100, true);
+    //lobby.start()
+
+    /*
+    var foo = new Sound("url", 100, true);
+    foo.start();
+    foo.stop();
+    foo.start();
+    foo.init(100, false);
+    foo.remove(); 
+    */
 </script>
 
 </html>
