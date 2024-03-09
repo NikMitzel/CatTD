@@ -106,6 +106,7 @@
                     // Akzeptieren und ausblenden
                     function acceptCookies() {
                         setCookie('cookiesAccepted', 'true');
+                        setCookie("volume", 0.5)
                         document.getElementById('formSubmit').style.disabled = 'false';
                         document.getElementById('cookiePopup').style.display = 'none';
                     }

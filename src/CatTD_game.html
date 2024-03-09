@@ -17,6 +17,32 @@
 </head>
 
 <body>
+    <div id="musicControls">
+        <i id="musicControlsvolumeicon" class="fa-solid fa-volume-low"></i>
+        <input id="musicControlsValume" type="range"  min="1" max="100" step="0.5"  value="50" onchange="updateVolume(this.value)">
+        <button id="musicControlsPlayPause" onclick="playPauseLobby()" class="game-button"></button>
+    </div>
+
+    <script>
+        let beat = new Audio('/src/music/ingame.mp3');
+        beat.volume = getCookie("volume")
+        document.getElementById('musicControlsValume').value = getCookie("volume")*100
+
+        function updateVolume(volume){
+            setCookie("volume", volume/100)
+            beat.volume = volume/100;
+        }
+
+        function playPauseLobby() {
+            if (!beat.paused) {
+                beat.pause();
+                document.getElementById('musicControlsPlayPause').innerHTML = '<i class="fa-solid fa-play"></i>'
+            } else {
+                beat.play();
+                document.getElementById('musicControlsPlayPause').innerHTML = '<i class="fa-solid fa-pause"></i>'
+            }
+        }
+    </script>
 <div id="outercontainer">
     <div id="innercontadiner">
         <header>
@@ -86,7 +112,6 @@
             <i class="fa-solid fa-right-from-bracket"></i>
         </button>
         <script>
-            usernameDisplay.innerHTML = getCookie("username")
             function logout() {
                 getCookie("username")
                 deleteCookie("username");
@@ -97,5 +122,14 @@
     </div>
 </footer>
 </body>
-
+<script>
+    document.getElementById('usernameDisplay').innerHTML = getCookie("username")
+    /*autoplay*/
+    beat.play()
+    if (beat.paused) {
+        document.getElementById('musicControlsPlayPause').innerHTML = '<i class="fa-solid fa-play"></i>'
+    } else {
+        document.getElementById('musicControlsPlayPause').innerHTML = '<i class="fa-solid fa-pause"></i>'
+    }
+</script>
 </html>
