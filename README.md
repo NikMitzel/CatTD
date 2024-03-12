@@ -1,13 +1,15 @@
-# Cat Tower Defence
-This is a small tower defence game, that is based on cats as towers. 
+# Cat Tower Defense
+This is a small tower defense game that is based on cats as towers. 
 
 ## Visit the game on:
-cattd.finanzberg.online (thx finn for the hosting)
+cattd.finanzberg.online (thanks to Finn for the hosting)
 
 ## How CatTD works
-CatTD is working fully on the client side, so is the leaderbord just a local one.
-The game itsele is working with a canivis and is drawn by js
+CatTD is working fully on the client side, so is the leaderboard just a local one.
+The game itself is working with a canvas and is drawn by JS.
+The login system and a Java Backend will come soon.
 
 ## Testing and using code
-The game is working with cookie storage, for testing open with a local liveserver or try it with the link proviedet above.
-Do **not** try to start the game as a file, this wont work properly.
+The game is working with cookie storage, for testing, open it on a local live server or try it with the link provided above.
+Do **not** try to start the game as a file, this won't work properly.
+
