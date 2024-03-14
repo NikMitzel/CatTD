@@ -7,9 +7,9 @@ This is a small tower defense game that is based on cats as towers.
 ## How CatTD works
 CatTD is working fully on the client side, so is the leaderboard just a local one.
 The game itself is working with a canvas and is drawn by JS.
-The login system and a Java Backend will come soon.
+The login system and a Java Backend can be added soon.
 
 ## Testing and using code
-The game is working with cookie storage, for testing, open it on a local live server or try it with the link provided above.
+The game is working with cookie storage, for testing, open it on a local live server or try it with the [link](https://cattd.finanzberg.online) provided above.
 Do **not** try to start the game as a file, this won't work properly.
 
