@@ -12,7 +12,7 @@
     <script type="application/javascript" src="js\cookies.js"></script>
     <script>
         if (getCookie('username') === undefined) {
-            window.open("../CatTD.html", "_self");
+            window.open("../index.html", "_self");
         }
     </script>
 </head>
@@ -65,7 +65,7 @@
     <div id="outercontainer">
         <div id="innercontadiner">
             <header id="inGameHader">
-                <a href="../CatTD.html" onclick="leavPage()"><img id="header-logo" src="img/icon.gif" /></a>
+                <a href="../index.html" onclick="leavPage()"><img id="header-logo" src="img/icon.gif" /></a>
             </header>
             <div id="contentdiv">
                 <div style="display: flex;">
@@ -179,7 +179,7 @@
                 function logout() {
                     getCookie("username")
                     deleteCookie("username");
-                    window.open("../CatTD.html", "_self");
+                    window.open("../index.html", "_self");
                 }
             </script>
             <div class="footer_text">© 2024</div>
