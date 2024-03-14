@@ -2,7 +2,7 @@
 This is a small tower defense game that is based on cats as towers. 
 
 ## Visit the game on:
-cattd.finanzberg.online (thanks to Finn for the hosting)
+[CatTD](cattd.finanzberg.online) (thanks to Finn for the hosting)
 
 ## How CatTD works
 CatTD is working fully on the client side, so is the leaderboard just a local one.
