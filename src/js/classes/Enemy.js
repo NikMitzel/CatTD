@@ -14,13 +14,13 @@ class Enemy extends Sprite {
             y: this.position.y + this.height / 2
         }
         this.radius = 50
-        this.health = 100
+        this.health = 140
         this.velocity = {
             x: 0,
             y: 0
         }
-        this.speed = 2
-        this.worth = 25
+        this.speed = 3
+        this.worth = 10
     }
 
     draw() {
@@ -32,7 +32,7 @@ class Enemy extends Sprite {
         c.fillRect(this.position.x, this.position.y - 15, this.width, 10)
 
         c.fillStyle = 'green'
-        c.fillRect(this.position.x, this.position.y - 15, this.width * this.health / 100, 10)
+        c.fillRect(this.position.x, this.position.y - 15, this.width * this.health / 150, 10)
     }
 
     update() {

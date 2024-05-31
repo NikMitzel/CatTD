@@ -55,7 +55,7 @@ function spawnEnemies(spawnCount) {
 
 const cats = []
 let activeTile = undefined
-let enemyCount = 2
+let enemyCount = 4
 let kills = 0
 let hearts = 10
 let coins = 100
@@ -89,7 +89,7 @@ function animate() {
     //tracking total amount of enemies
     if (enemies.length === 0) {
         kills = kills + enemyCount;
-        enemyCount++
+        enemyCount+= 2
         spawnEnemies(enemyCount)
     }
 
